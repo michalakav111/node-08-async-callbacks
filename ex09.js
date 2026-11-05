@@ -14,3 +14,7 @@
 const os = require("os");
 
 // write your code here
+const cpuInfo = os.cpus();
+cpuInfo.forEach((cpu, index) => {
+  console.log(`CPU ${index}: ${cpu.model}`);
+});
