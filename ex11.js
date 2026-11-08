@@ -11,9 +11,82 @@
 //
 // Run: node ex11.js
 
+// const fs = require("fs");
+// const path = require("path");
+
+// // write your code here
+
+// const directoryPath = path.join(__dirname, "data-folder");
+// const totalSize = 0; // Use an object to hold the total size
+// const pedding=0;
+// fs.readdir(directoryPath, (err, entries) => {
+//   if (err) {
+//     console.error("Error reading directory:", err);
+//     return;
+//   }
+//   if (pedding === 0 ){
+//     console.log(`Total size: ${{totalSize}} bytes`);
+//     return;
+//   }
+//   pedding = entries.length;
+//   entries.forEach((entry) => {
+//     const fullPath = path.join(directoryPath, entry);
+//     fs.lstat(fullPath, (err, stats) => {
+//       if (err) {
+//         console.error("Error getting stats for file:", err);
+//         return;
+//       } 
+//     if(stats.isFile()){
+//         totalSize.value += stats.size;
+//         pedding--;
+//     }
+//  if (pedding === 0 ){
+//     console.log(`Total size: ${{totalSize}} bytes`);
+//     return;
+//   }
+    
+//     });
+//     });
+// });
+
+
+
 const fs = require("fs");
 const path = require("path");
 
 const directoryPath = path.join(__dirname, "data-folder");
 
-// write your code here
+let totalSize = 0;
+
+fs.readdir(directoryPath, (err, entries) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    let pending = entries.length;
+
+    if (pending === 0) {
+        console.log(`Total size: ${totalSize} bytes`);
+        return;
+    }
+
+    entries.forEach((entry) => {
+        const filePath = path.join(directoryPath, entry);
+
+        fs.lstat(filePath, (err, stats) => {
+            if (err) {
+                console.error(err);
+            } else if (stats.isFile()) {
+                totalSize += stats.size;
+            }
+
+            pending--;
+
+            if (pending === 0) {
+                console.log(`Total size: ${totalSize} bytes`);
+            }
+        });
+    });
+});
+
