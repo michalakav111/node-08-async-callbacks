@@ -10,9 +10,27 @@
 //
 // Run: node ex15.js   (run it twice)
 
+
 const fs = require("fs");
 const path = require("path");
 
+const data = "Hello Node.js";
 const filePath = path.join(__dirname, "data.txt");
 
-// write your code here
+fs.access(filePath, fs.constants.F_OK, (err) => {
+
+    if (!err) {
+        console.log("File already exists.");
+    } else {
+
+        fs.writeFile(filePath, data, (err) => {
+
+            if (err) {
+                console.error("Error creating file:", err);
+                return;
+            }
+
+            console.log("File created successfully.");
+        });
+    }
+});
