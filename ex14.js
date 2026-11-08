@@ -18,3 +18,65 @@
 // Run: node ex14.js
 
 // write your code here
+
+
+//
+  function fs0(){
+    const delay = 500 + Math.random() * 1000;
+
+   setTimeout(() => {
+     console.log('3');
+    fs1();
+   
+}, delay);
+}
+
+function fs1()
+{
+       const delay = 500 + Math.random() * 1000;
+
+     setTimeout(() => {
+            console.log('2');
+        fs2();
+
+}, delay);
+}
+
+function fs2()
+{
+       const delay = 500 + Math.random() * 1000;
+
+     setTimeout(() => {
+            console.log('1');
+
+        fs3();
+
+}, delay);
+}
+
+function fs3()
+{
+       const delay = 500 + Math.random() * 1000;
+
+     setTimeout(() => {
+            console.log('0');
+
+        fs4();
+
+}, delay);
+}
+
+
+function fs4()
+{
+       const delay = 500 + Math.random() * 1000;
+
+     setTimeout(() => {
+            console.log('Done!');
+
+}, delay);
+}
+
+
+
+fs0();
